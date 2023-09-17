@@ -1,0 +1,46 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 400px;
+    width: 40vw;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-primary);
+}
+
+.input {
+    padding: 1rem 3rem 1rem 1rem;
+    max-height: 200px;
+    height: 56px;
+    overflow-y: hidden;
+    border-color: var(--color-border);
+    border-width: 1px;
+    resize: none;
+    width: 100%;
+    margin: 0;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+.input:focus {
+    outline: none;
+}
+
+.button {
+    position: absolute;
+    display: flex;
+    right: 0.75rem;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    color: #fff;
+    background-color: var(--color-active);
+    cursor: pointer;
+}
+
+.button:disabled {
+    cursor: default;
+    background: none;
+    color: var(--color-disabled);
+}
