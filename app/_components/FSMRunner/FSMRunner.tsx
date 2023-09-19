@@ -1,14 +1,12 @@
 'use client'
-import styles from './fms.runner.module.css';
+import styles from './fsm.runner.module.css';
 import {Card} from "@/app/_components/Card/Card";
-import {TMachine} from "@/app/_services/finiteStateMachine/fms.types";
+import {TMachine} from "@/app/_services/finiteStateMachine/fsm.types";
 import useFiniteStateMachine from "@/app/_services/finiteStateMachine/useFiniteStateMachine";
-import {Logo} from "@/app/_components/Logo/Logo";
-import Link from "next/link";
 
-export type TFMSVisualization = {data: TMachine};
+export type TFSMRunnerParams = {data: TMachine};
 
-export function FMSRunner({data}: TFMSVisualization) {
+export function FSMRunner({data}: TFSMRunnerParams) {
     const [state, action] = useFiniteStateMachine(data);
 
     const handleClick = (actionName: string) => {

@@ -7,11 +7,11 @@ export const returnSchema = {
     properties: {
         name: {
             type: 'string',
-            description: 'FMS name'
+            description: 'FSM name'
         },
         description: {
             type: 'string',
-            description: 'FMS description'
+            description: 'FSM description'
         },
         initialState: {
             type: 'string',

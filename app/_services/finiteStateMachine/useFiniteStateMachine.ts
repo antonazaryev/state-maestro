@@ -1,4 +1,4 @@
-import {TMachine, TState} from "@/app/_services/finiteStateMachine/fms.types";
+import {TMachine, TState} from "@/app/_services/finiteStateMachine/fsm.types";
 import {useState} from "react";
 
 export type TUseFiniteStateMachineReturn = [
@@ -9,7 +9,7 @@ export type TUseFiniteStateMachineReturn = [
 /**
  * This hook implements finite state machine
  *
- * @param machine - The object describes the FMS logic
+ * @param machine - The object describes the FSM logic
  * @returns The array with current running state and function to execute transition
  *
  */

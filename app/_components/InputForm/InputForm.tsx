@@ -10,14 +10,14 @@ export function InputForm() {
     const [message, setMessage] = useState('');
     const router = useRouter();
     const handleSubmit = preventDefault(() => {
-        router.push('/fms?message=' + message);
+        router.push('/fsm?message=' + message);
     });
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setMessage(event.target.value);
     };
 
     return <form className={styles.container} onSubmit={handleSubmit}>
-        <input type='text' className={styles.input} placeholder='Type FMS description' value={message} onChange={handleChange}></input>
+        <input type='text' className={styles.input} placeholder='Type FSM description' value={message} onChange={handleChange}></input>
         <button className={styles.button} disabled={message === ''}>
             <SubmitIcon width={16} height={16}/>
         </button>

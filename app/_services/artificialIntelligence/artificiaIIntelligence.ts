@@ -3,7 +3,7 @@
  */
 
 import OpenAI from "openai";
-import {TMachine} from "@/app/_services/finiteStateMachine/fms.types";
+import {TMachine} from "@/app/_services/finiteStateMachine/fsm.types";
 import {returnSchema} from "@/app/_services/artificialIntelligence/openai.return.schemas";
 
 export type AIService = {
@@ -19,8 +19,8 @@ function ArtificialIntelligenceHandler(): AIService {
         /**
          * Generates finite state machine by description
          *
-         * @param stateMachineDescription - The description for FMS
-         * @returns The FMS logic object
+         * @param stateMachineDescription - The description for FSM
+         * @returns The FSM logic object
          *
          */
         getStates: async function(stateMachineDescription: string): Promise<TMachine> {
@@ -28,8 +28,8 @@ function ArtificialIntelligenceHandler(): AIService {
             let completion: OpenAI.Chat.ChatCompletion = await openai.chat.completions.create({
                 model: "gpt-4",
                 messages: [{role: "user", content: requestContent}],
-                functions: [{name: "set_fms", parameters: returnSchema}],
-                function_call: {name: "set_fms"}
+                functions: [{name: "set_fsm", parameters: returnSchema}],
+                function_call: {name: "set_fsm"}
             });
             const generatedText: string | undefined = completion.choices[0].message.function_call?.arguments
             // Printing a log for debugging if needed

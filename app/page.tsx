@@ -7,16 +7,16 @@ import {FiniteStateMachinesExamples} from "@/app/_data/finiteStateMachine.exampl
 import Link from "next/link";
 
 export default async function Home() {
-    const fmsExamples = randomizeElementsInArray(FiniteStateMachinesExamples, 4) ;
+    const fsmExamples = randomizeElementsInArray(FiniteStateMachinesExamples, 4) ;
 
     return (
     <main className={styles.elements}>
         <Logo loading={false}></Logo>
         <InputForm></InputForm>
         <div className={styles.suggestions}>
-        {fmsExamples.map((fms, i) =>
-            <Link key={'link-'+ i} href={'/fms?message=' + fms.name} style={{textDecoration: 'none'}}>
-                <Card appearDelay={3 + i * 0.5} text={fms.name} description={fms.description}></Card>
+        {fsmExamples.map((fsm, i) =>
+            <Link key={'link-'+ i} href={'/fsm?message=' + fsm.name} style={{textDecoration: 'none'}}>
+                <Card appearDelay={3 + i * 0.5} text={fsm.name} description={fsm.description}></Card>
             </Link>
         )}
         </div>

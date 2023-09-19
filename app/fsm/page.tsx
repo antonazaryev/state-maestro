@@ -1,24 +1,24 @@
-import {FMSRunner} from "@/app/_components/FMSRunner/FMSRunner";
+import {FSMRunner} from "@/app/_components/FSMRunner/FSMRunner";
 import ArtificialIntelligence from "@/app/_services/artificialIntelligence/artificiaIIntelligence";
-import {TMachine} from "@/app/_services/finiteStateMachine/fms.types";
+import {TMachine} from "@/app/_services/finiteStateMachine/fsm.types";
 import GenericError from "@/app/_components/GenericError/GenericError";
 import prisma from "@/app/_services/database/prismaConnection";
 import {Logo} from "@/app/_components/Logo/Logo";
 import Link from "next/link";
 import styles from "./page.module.css"
 
-async function getFMSExample(fmsName: string): Promise<TMachine> {
+async function getFSMExample(fsmName: string): Promise<TMachine> {
     'use server'
-    const readyFMSExample = await prisma.fMSExamples.findFirst({
-        where: { name: { equals: fmsName } },
+    const readyFSMExample = await prisma.fMSExamples.findFirst({
+        where: { name: { equals: fsmName } },
     });
 
-    if (readyFMSExample) {
-        return JSON.parse(readyFMSExample.data) as TMachine;
+    if (readyFSMExample) {
+        return JSON.parse(readyFSMExample.data) as TMachine;
     }
 
-    const machine: TMachine = await ArtificialIntelligence.getStates(fmsName);
-    await prisma.fMSExamples.create({ data: {name: fmsName, data: JSON.stringify(machine)}});
+    const machine: TMachine = await ArtificialIntelligence.getStates(fsmName);
+    await prisma.fMSExamples.create({ data: {name: fsmName, data: JSON.stringify(machine)}});
 
     return machine;
 }
@@ -26,14 +26,14 @@ async function getFMSExample(fmsName: string): Promise<TMachine> {
 export default async function Home({ searchParams }: { searchParams: { message: string }}) {
     if (searchParams.message) {
         try {
-            const machine: TMachine = await getFMSExample(searchParams.message);
+            const machine: TMachine = await getFSMExample(searchParams.message);
             if (machine) {
                 return (
                     <main>
                         <Link className={styles.logo} href={'/'}>
                             <Logo loading={false} initialLoading={false}></Logo>
                         </Link>
-                        <FMSRunner data={machine}/>
+                        <FSMRunner data={machine}/>
                     </main>
                 );
             }

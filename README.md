@@ -8,6 +8,15 @@ This app uses OpenAI to generate Finite State Machine logic by request, then you
 npm install
 prisma init
 ```
+
+## Configuration
+
+Create .env.local file that should include following:
+
+```bash
+OPEN_AI_KEY={YOUR API KEY FROM OPEN AI}
+```
+
 ## Getting Started
 
 Run the development server:

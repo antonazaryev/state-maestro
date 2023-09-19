@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'State Maestro',
-  description: 'Generate custom FMS and play with it!',
+  description: 'Generate custom FSM and play with it!',
 }
 
 export default function RootLayout({

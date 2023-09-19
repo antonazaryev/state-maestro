@@ -4,13 +4,13 @@ import styles from './card.module.css';
 import SubmitIcon from '@/public/submit.svg';
 import clsx from "clsx";
 
-export type TSuggestion = {
+export type TCardParams = {
     text: string,
     description?: string,
     onClick?: (text: string) => void,
     appearDelay?: number
 }
-export function Card({text, description, onClick, appearDelay = 0}: TSuggestion) {
+export function Card({text, description, onClick, appearDelay = 0}: TCardParams) {
     return <>
         <button
             className={clsx({[styles.animate]: appearDelay}, styles.button)}

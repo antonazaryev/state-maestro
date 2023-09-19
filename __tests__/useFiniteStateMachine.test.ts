@@ -1,16 +1,16 @@
-import {it, expect, describe, jest} from "@jest/globals";
+import {it, expect, describe} from "@jest/globals";
 import {act, renderHook, waitFor} from "@testing-library/react";
 import useFiniteStateMachine from "../app/_services/finiteStateMachine/useFiniteStateMachine";
-import {TMachine} from "@/app/_services/finiteStateMachine/fms.types";
+import {TMachine} from "@/app/_services/finiteStateMachine/fsm.types";
 
-describe("Test FMS logic", () => {
-    const emptyFMS: TMachine = {
-        name: 'Test FMS',
+describe("Test FSM logic", () => {
+    const emptyFSM: TMachine = {
+        name: 'Test FSM',
         initialState: 'state1',
         states: []
     }
-    const goodFMS: TMachine = {
-        ...emptyFMS,
+    const goodFSM: TMachine = {
+        ...emptyFSM,
         states: [
             {
                 name: 'state1',
@@ -43,30 +43,30 @@ describe("Test FMS logic", () => {
 
     it("should error in no states", async () => {
         expect(() => {
-            renderHook(() => useFiniteStateMachine(emptyFMS));
+            renderHook(() => useFiniteStateMachine(emptyFSM));
         }).toThrow('Do not contains any states');
     });
 
     it("should start with initial state", async () => {
-        const {result} = renderHook(() => useFiniteStateMachine(goodFMS));
+        const {result} = renderHook(() => useFiniteStateMachine(goodFSM));
         const [currentState] = result.current;
 
-        expect(currentState).toBe(goodFMS.states[0]);
+        expect(currentState).toBe(goodFSM.states[0]);
     });
 
     it("should move to correct state on action", async () => {
-        const {result} = renderHook(() => useFiniteStateMachine(goodFMS));
+        const {result} = renderHook(() => useFiniteStateMachine(goodFSM));
         const [_currentState, handleAction] = result.current;
 
         act(() => handleAction('state1-transition1'));
 
         await waitFor(() =>
-            expect(result.current[0]).toEqual(goodFMS.states[1])
+            expect(result.current[0]).toEqual(goodFSM.states[1])
         );
     });
 
     it("should error on wrong action", async () => {
-        const {result} = renderHook(() => useFiniteStateMachine(goodFMS));
+        const {result} = renderHook(() => useFiniteStateMachine(goodFSM));
         const [_currentState, handleAction] = result.current;
 
         expect(() => {
